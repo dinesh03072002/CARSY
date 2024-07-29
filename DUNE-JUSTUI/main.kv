@@ -1,0 +1,196 @@
+<Main>
+    name : 'main'
+    BoxLayout:
+        orientation: 'vertical'
+        Image:
+            source: 'background.jpg'
+            allow_stretch: True
+            keep_ratio: False
+    
+    ScrollView:
+        BoxLayout:
+            orientation:'vertical'
+            size_hint_y:None
+            height: self.minimum_height
+            padding:[0,dp(80),0,dp(40)]
+
+            MDLabel:
+                text: 'Car Price Predictor'
+                halign: 'center'
+                font_style: 'H4'
+                color: '#C0C0C0'
+                bold:True
+            GridLayout:
+                cols: 2
+                padding:[dp(40),dp(50),dp(25),dp(100)]
+                spacing:dp(20)
+                size_hint_y: None
+                height: self.minimum_height
+                width: root.width 
+
+                MDLabel:
+                    text: 'Year'
+                    size_hint_x:None
+                    width:dp(100)
+                    bold:True
+                    font_size:sp(15)
+
+                MDTextField:
+                    id: input_1
+                    hint_text: 'Year'
+                    hint_text_width: dp(100)
+                    size_hint_x: None
+                    width: root.width *0.2
+                    helper_text:""
+                    helper_text_mode:"on_error"
+                    on_focus:app.clear_helper_text(self)
+
+                MDLabel:
+                    text: 'KilometersDriven'
+                    size_hint_y:None
+                    width:dp(100)
+                    bold:True
+                    font_size:sp(15)
+
+                MDTextField:
+                    id: input_2
+                    hint_text: 'Km'
+                    hint_text_width: dp(100)
+                    size_hint_x: None
+                    width: root.width * 0.2
+                    helper_text:""
+                    helper_text_mode:"on_error"
+                    on_focus:app.clear_helper_text(self)
+
+                MDLabel:
+                    text: 'FuelType'
+                    size_hint_x:None
+                    width:dp(100)
+                    bold:True
+                    font_size:sp(15)
+
+
+                MDDropDownItem:
+                    id: drop_item
+                    text: 'Diesel'
+                    on_release: app.show_fuel_menu(self,'drop_item')
+                    size_hint_x: None
+                    width: root.width * 0.3  
+                
+                MDLabel:
+                    text: 'Transmission'
+                    size_hint_x:None
+                    width:dp(100)
+                    bold:True
+                    font_size:sp(15)
+
+                    
+
+                MDDropDownItem:
+                    id: drop_item1
+                    text: 'Manual'
+                    on_release: app.show_Transmission_menu(self,'drop_item1')
+                    size_hint_x: None
+                    width:root.width*0.2
+                    width: root.width * 0.3
+                MDLabel:
+                    text: 'OwnerType'
+                    size_hint_x:None
+                    width:dp(100)
+                    bold:True
+                    font_size:sp(15)
+
+
+                    
+                MDDropDownItem:
+                    id: drop_item2
+                    text: '1'
+                    on_release: app.show_Owner_menu(self,'drop_item2')
+                    size_hint_x: None
+                    width: root.width * 0.3
+                MDLabel:
+                    text: 'Mileage'
+                    size_hint_x:None
+                    width:dp(100)
+                    bold:True
+                    font_size:sp(15)
+
+
+                MDTextField:
+                    id: input_6
+                    hint_text: 'Kmpl'
+                    hint_text_width: dp(150)
+                    size_hint_x: None
+                    width:root.width * 0.2
+                    helper_text:""
+                    helper_text_mode:"on_error"
+                    on_focus:app.clear_helper_text(self)
+
+                MDLabel:
+                    text: 'EngineCapacity'
+                    size_hint_x:None
+                    width:dp(120)
+                    bold:True
+                    font_size:sp(15)
+
+
+                    
+
+                    
+
+                MDTextField:
+                    id: input_7
+                    hint_text: 'CC'
+                    hint_text_width: dp(150)
+                    size_hint_x: None
+                    width:root.width * 0.2
+                    helper_text:""
+                    helper_text_mode:"on_error"
+                    on_focus:app.clear_helper_text(self)
+
+
+                MDLabel:
+                    text: 'Power'
+                    size_hint_x:None
+                    width:dp(100)
+                    bold:True
+                    font_size:sp(15)
+
+                    
+
+                MDTextField:
+                    id: input_8
+                    hint_text: 'BHP'
+                    hint_text_width: dp(150)
+                    size_hint_x: None
+                    width:root.width * 0.2
+                    helper_text:""
+                    helper_text_mode:"on_error"
+                    on_focus:app.clear_helper_text(self)
+                    
+
+
+        
+
+            MDRaisedButton:
+                pos_hint: {'center_x':0.5}
+                text: 'Predict'
+                size_hint:(0.3,0.15)
+                on_press: app.predict()
+            
+<content>
+    orientation:'horizontal'
+    padding:[0,0,0,dp(10)]
+    spacing:dp(20)
+    size_hint_y:None
+    height:dp(20)
+    MDSpinner:
+        id:spinner
+        size_hint:None, None
+        size:dp(30),dp(30)
+        active:True
+    MDLabel:
+        text:"Loading..."
+        font_size:dp(20)
+        padding:[0,0,0,dp(18)]
+
